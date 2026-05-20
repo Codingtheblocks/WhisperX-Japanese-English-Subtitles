@@ -182,7 +182,7 @@ def main() -> None:
     stem = settings.input_video.stem
     transcript_path = settings.output_dir / f"{stem}.whisperx.json"
     ass_path = settings.output_dir / f"{stem}.bilingual.ass"
-    suffix = settings.render.get("output_name_suffix", "_bilingual_captions")
+    suffix = settings.render.get("output_name_suffix", "_bilingual_subtitles")
     output_video = settings.output_dir / f"{stem}{suffix}.mp4"
 
     if transcript_path.exists():

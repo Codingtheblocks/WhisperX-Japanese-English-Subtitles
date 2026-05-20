@@ -1,5 +1,5 @@
 input_video: "C:/path/to/your/video.mp4"
-output_dir: "C:/path/to/output/captions"
+output_dir: "C:/path/to/output/subtitles"
 
 whisper:
   model: "large-v3"
@@ -29,4 +29,4 @@ style:
 
 render:
   burn_in: true
-  output_name_suffix: "_bilingual_captions"
+  output_name_suffix: "_bilingual_subtitles"
