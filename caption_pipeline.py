@@ -117,6 +117,8 @@ def build_ass(settings: Settings, result: dict[str, Any], ass_path: Path) -> Non
 
     subs = pysubs2.SSAFile()
     style = settings.style
+    subs.info["PlayResX"] = str(int(style.get("play_res_x", 1280)))
+    subs.info["PlayResY"] = str(int(style.get("play_res_y", 720)))
     subs.styles["Bilingual"] = pysubs2.SSAStyle(
         fontname=style.get("font_name", "Yu Gothic UI"),
         fontsize=float(style.get("font_size", 42)),

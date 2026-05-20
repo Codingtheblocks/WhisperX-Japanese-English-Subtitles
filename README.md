@@ -1,12 +1,12 @@
-# WhisperX Japanese English Captions
+# WhisperX Japanese English Subtitles
 
-Reusable bilingual caption pipeline for Japanese and English subtitles.
+Reusable bilingual subtitle pipeline for Japanese and English videos.
 
 ## What It Does
 
 - Transcribes and aligns audio with WhisperX.
 - Creates Japanese + English subtitle lines in an `.ass` file.
-- Optionally burns the captions into a new MP4 using FFmpeg.
+- Optionally burns the subtitles into a new MP4 using FFmpeg.
 
 ## Folder Layout
 
