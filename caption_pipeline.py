@@ -13,7 +13,7 @@ from deep_translator import GoogleTranslator
 from rich.console import Console
 from rich.progress import track
 
-console = Console()
+console = Console(force_terminal=False, legacy_windows=False)
 
 
 @dataclass
@@ -38,6 +38,10 @@ def load_settings(config_path: Path) -> Settings:
         style=raw.get("style", {}),
         render=raw.get("render", {}),
     )
+
+
+def safe_path(path: Path) -> str:
+    return str(path).encode("ascii", errors="backslashreplace").decode("ascii")
 
 
 def transcribe_and_align(settings: Settings) -> dict[str, Any]:
@@ -179,16 +183,20 @@ def main() -> None:
     suffix = settings.render.get("output_name_suffix", "_bilingual_captions")
     output_video = settings.output_dir / f"{stem}{suffix}.mp4"
 
-    result = transcribe_and_align(settings)
-    transcript_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
-    console.print(f"[green]Saved transcript:[/green] {transcript_path}")
+    if transcript_path.exists():
+        console.print(f"[green]Using transcript:[/green] {safe_path(transcript_path)}")
+        result = json.loads(transcript_path.read_text(encoding="utf-8"))
+    else:
+        result = transcribe_and_align(settings)
+        transcript_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+        console.print(f"[green]Saved transcript:[/green] {safe_path(transcript_path)}")
 
     build_ass(settings, result, ass_path)
-    console.print(f"[green]Saved subtitles:[/green] {ass_path}")
+    console.print(f"[green]Saved subtitles:[/green] {safe_path(ass_path)}")
 
     if settings.render.get("burn_in", True) and not args.skip_render:
         render_video(settings.input_video, ass_path, output_video)
-        console.print(f"[green]Saved rendered video:[/green] {output_video}")
+        console.print(f"[green]Saved rendered video:[/green] {safe_path(output_video)}")
 
 
 if __name__ == "__main__":
