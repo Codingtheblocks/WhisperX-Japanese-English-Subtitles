@@ -15,6 +15,22 @@ Reusable bilingual caption pipeline for Japanese and English subtitles.
 - `config.yaml` - your local working config, ignored by Git.
 - `.venv` - local Python environment, ignored by Git.
 
+## Setup
+
+Use Python 3.10 through 3.13. Python 3.12 is recommended.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip setuptools wheel
+.\.venv\Scripts\python.exe -m pip install -r .\requirements.txt
+```
+
+For NVIDIA GPU acceleration on Windows, install the CUDA PyTorch wheels after the regular requirements:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install --force-reinstall torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+```
+
 ## Run It
 
 From PowerShell:
