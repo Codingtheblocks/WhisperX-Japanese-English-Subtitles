@@ -1,0 +1,30 @@
+input_video: "C:/path/to/your/video.mp4"
+output_dir: "C:/path/to/output/captions"
+
+whisper:
+  model: "large-v3"
+  language: "ja"
+  device: "cuda"
+  compute_type: "float16"
+  batch_size: 8
+
+captions:
+  japanese_on_top: true
+  max_chars_per_line: 34
+  min_duration: 1.0
+  max_duration: 7.0
+
+style:
+  font_name: "Yu Gothic UI"
+  font_size: 42
+  english_font_size: 34
+  primary_color: "&H00FFFFFF"
+  outline_color: "&H00161616"
+  back_color: "&H96000000"
+  outline: 2.4
+  shadow: 0.6
+  margin_v: 78
+
+render:
+  burn_in: true
+  output_name_suffix: "_bilingual_captions"

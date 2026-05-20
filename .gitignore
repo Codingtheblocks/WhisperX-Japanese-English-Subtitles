@@ -1,0 +1,9 @@
+.venv/
+config.yaml
+__pycache__/
+*.pyc
+*.whisperx.json
+*.ass
+*.srt
+*.mp4
+captions/
